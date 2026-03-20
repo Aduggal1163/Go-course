@@ -12,7 +12,7 @@ func main() {
 		fmt.Print("What do you want to do?\n 1. Check Balance\n 2. Deposit Money\n 3. Withdraw Money \n 4. Exit\nEnter Your Choice:\n ")
 		fmt.Scan(&choice)
 		if choice == 1 {
-			fmt.Printf("Your balance is : $%.2f", accountBalance)
+			fmt.Printf("Your balance is : $%.2f\n", accountBalance)
 			
 		} else if choice == 2 {
 			fmt.Print("Enter amt you want to add: ")
@@ -43,7 +43,7 @@ func main() {
 			break
 		} else {
 			fmt.Println("Invalid choice")
-			break
+			continue
 		}
 	}
 	fmt.Println("Thanks for choosing our bank")
