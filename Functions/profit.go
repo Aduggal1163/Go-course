@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 )
-
 func main() {
 	var revenue float64
 	var expenses float64
@@ -27,5 +26,6 @@ func calculateEBT(revenue float64, expenses float64) float64 {
 }
 func calculateProfit(EBT float64, taxRate float64) (sol float64) {
 	sol = EBT * (1 - taxRate/100)
+	
 	return
 }
