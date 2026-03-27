@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"time"
+	"example.com/structs/user"
 )
 
 //	func main() {
@@ -21,37 +21,27 @@ import (
 // 	return value
 // }
 
-type user struct {
-	firstName string
-	lastName  string
-	birthdate string
-	createdAt time.Time
-}
-
-// now this func belongs to that struct and now known as method (u user) is called reciever argument
-func (u user) outptUserDetails() {
-	fmt.Println("FirstName:", u.firstName, "\nLastName:", u.lastName, "\nBirthDate:", u.birthdate, "\nTime created:", u.createdAt)
-}
-func (u *user) clearUserName() {
-	u.firstName = ""
-	u.lastName = ""
-}
-
 func main() {
 	userFirstname := getUserData("Please enter your first name: ")
 	userLastname := getUserData("Please enter your last name: ")
 	userBirthdate := getUserData("Please enter your birthdate (MM/DD/YYYY): ")
-	var appUser user
-	//struct literal notation
-	appUser = user{
-		firstName: userFirstname,
-		lastName:  userLastname,
-		birthdate: userBirthdate,
-		createdAt: time.Now(),
+	// var appUser user
+	var appUser *user.User
+	appUser, err := user.New(userFirstname, userLastname, userBirthdate)
+	if err != nil {
+		fmt.Println("User creation fail", err)
+		return
 	}
-	appUser.outptUserDetails()
-	appUser.clearUserName()
-	appUser.outptUserDetails()
+	//struct literal notation
+	// appUser = user{
+	// 	firstName: userFirstname,
+	// 	lastName:  userLastname,
+	// 	birthdate: userBirthdate,
+	// 	createdAt: time.Now(),
+	// }
+	appUser.OutptUserDetails()
+	appUser.ClearUserName()
+	appUser.OutptUserDetails()
 
 	// null struct can also be create
 	// appUser = user{} this will assign null values
@@ -59,6 +49,7 @@ func main() {
 func getUserData(promptText string) string {
 	fmt.Print(promptText)
 	var value string
-	fmt.Scan(&value)
+	fmt.Scanln(&value)
+	// we use Scanln instead of Scan because it allows us to if we press enter it will go into next input not waiting for the current input
 	return value
 }
