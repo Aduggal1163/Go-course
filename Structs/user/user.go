@@ -13,13 +13,36 @@ type User struct {
 	createdAt time.Time
 }
 
+// constructor embedding (Inheritance)
+type Admin struct {
+	email    string
+	password string
+	User
+}
+
 // now this func belongs to that struct and now known as method (u user) is called reciever argument
 func (u User) OutptUserDetails() {
 	fmt.Println("FirstName:", u.firstName, "\nLastName:", u.lastName, "\nBirthDate:", u.birthdate, "\nTime created:", u.createdAt)
 }
+
+// koi bhi field ko modilfy krne layi phir hum ko use karna pdega pointer
 func (u *User) ClearUserName() {
 	u.firstName = ""
 	u.lastName = ""
+}
+
+// constructor
+func NewAdmin(email, password, firstName, lastName, birthdate string) *Admin {
+	return &Admin{
+		email:    email,
+		password: password,
+		User: User{
+			firstName: "admin",
+			lastName:  "admin",
+			birthdate: birthdate,
+			createdAt: time.Now(),
+		},
+	}
 }
 
 // constructor
