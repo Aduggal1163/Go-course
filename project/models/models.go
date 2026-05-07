@@ -1,6 +1,7 @@
 package models
 
 import "time"
+//struct
 
 type Event struct {
 	ID          int
@@ -10,7 +11,6 @@ type Event struct {
 	DateTime    time.Time
 	UserID      int
 }
-
 var events = []Event{}
 
 func (e Event) Save() {
