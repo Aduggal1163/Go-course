@@ -23,14 +23,14 @@ func InitDB() {
 func createTables() {
 	createEventTable := `
 		CREATE TABLE IF NOT EXISTS events (
-			id integer primary key autoincrement,
-			name varchar(20) not null,
-			description varchar(50) not null,
-			location varchar(50) not null,
-			dateTime DATETIME,
-			user_id integer
-		)
-	`
+		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		name TEXT NOT NULL,
+		description TEXT NOT NULL,
+		location TEXT NOT NULL,
+		datetime DATETIME,
+		user_id INTEGER
+	)
+`
 	_, err := DB.Exec(createEventTable)
 
 	if err != nil {
